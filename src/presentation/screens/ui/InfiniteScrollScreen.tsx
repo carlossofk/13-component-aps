@@ -1,12 +1,13 @@
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react-native/no-inline-styles */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 import { ActivityIndicator, View } from 'react-native';
 import { FadeInImage } from '../../components/ui/FadeInImage';
-import { colors } from '../../../config/theme/theme';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export const InfiniteScrollScreen = () => {
+    const { colors } = useContext(ThemeContext);
     const [numbers, setNumbers] = useState([0, 1, 2, 3, 4, 5, 6]);
 
     const loadMore = () => {
@@ -18,7 +19,7 @@ export const InfiniteScrollScreen = () => {
     };
 
     return (
-        <View style={{ backgroundColor: 'black' }}>
+        <View style={{ backgroundColor: colors.background }}>
 
             <FlatList
                 data={numbers}
