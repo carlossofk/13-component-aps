@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { colors } from '../../../config/theme/theme';
 import Icon from '@react-native-vector-icons/ionicons';
+import { Separator } from './Separator';
 
 interface Props {
     name: string,
@@ -23,20 +24,23 @@ export const MenuItem: FC<Props> = ({ name, icon, component, isFirst = false, is
     const navigation = useNavigation<any>();
 
     return (
-        <Pressable
-            onPress={() => navigation.navigate(component)}
-        >
-            <View style={{
-                ...style.container,
-                backgroundColor: colors.cardBackground,
-                ...(isFirst && { borderTopLeftRadius: 10, borderTopRightRadius: 10, paddingTop: 10 }),
-                ...(isLast && { borderBottomLeftRadius: 10, borderBottomRightRadius: 10, paddingBottom: 10 }),
-            }}>
-                <Icon name={icon as iconType} size={35} style={{ marginRight: 10 }} color={colors.primary} />
-                <Text style={{ color: colors.text }}>{name}</Text>
-                <Icon name={'chevron-forward-outline'} size={35} style={{ marginLeft: 'auto', color: colors.primary }} />
-            </View>
-        </Pressable>
+        <>
+            <Pressable
+                onPress={() => navigation.navigate(component)}
+            >
+                <View style={{
+                    ...style.container,
+                    backgroundColor: colors.cardBackground,
+                    ...(isFirst && { borderTopLeftRadius: 10, borderTopRightRadius: 10, paddingTop: 10 }),
+                    ...(isLast && { borderBottomLeftRadius: 10, borderBottomRightRadius: 10, paddingBottom: 10 }),
+                }}>
+                    <Icon name={icon as iconType} size={35} style={{ marginRight: 10 }} color={colors.primary} />
+                    <Text style={{ color: colors.text }}>{name}</Text>
+                    <Icon name={'chevron-forward-outline'} size={35} style={{ marginLeft: 'auto', color: colors.primary }} />
+                </View>
+            </Pressable>
+            {!isLast && (<Separator />)}
+        </>
 
     );
 };
