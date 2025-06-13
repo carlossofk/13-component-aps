@@ -1,10 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { View } from 'react-native';
-import { globalStyles } from '../../../config/theme/theme';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Title } from '../../components/ui/Title';
 import { MenuItem } from '../../components/ui/MenuItem';
+import { CustomView } from '../../components/ui/CustomView';
 
 
 const animationMenuItems = [
@@ -73,47 +73,46 @@ const uiMenuItems = [
 
 
 export const HomeScreen = () => {
-    return (
-        <View style={[globalStyles.mainContainer]}>
-            <View style={globalStyles.globalMargin}>
-                <ScrollView>
-                    <Title text="Opciones de menu" safe />
 
-                    {/* Animations Items */}
-                    {animationMenuItems.map((item, index) => (
+    return (
+        <CustomView margin>
+            <ScrollView>
+                <Title text="Opciones de menu" safe />
+
+                {/* Animations Items */}
+                {animationMenuItems.map((item, index) => (
+                    <MenuItem
+                        key={item.component}
+                        {...item}
+                        isFirst={index === 0}
+                        isLast={index === animationMenuItems.length - 1}
+                    />
+                ))}
+
+                {/* Menu  Items */}
+                <View style={{ marginTop: 30 }}>
+                    {menuItems.map((item, index) => (
                         <MenuItem
                             key={item.component}
                             {...item}
                             isFirst={index === 0}
-                            isLast={index === animationMenuItems.length - 1}
+                            isLast={index === menuItems.length - 1}
                         />
                     ))}
+                </View>
 
-                    {/* Menu  Items */}
-                    <View style={{ marginTop: 30 }}>
-                        {menuItems.map((item, index) => (
-                            <MenuItem
-                                key={item.component}
-                                {...item}
-                                isFirst={index === 0}
-                                isLast={index === menuItems.length - 1}
-                            />
-                        ))}
-                    </View>
-
-                    {/* Ui Items */}
-                    <View style={{ marginTop: 30 }}>
-                        {uiMenuItems.map((item, index) => (
-                            <MenuItem
-                                key={item.component}
-                                {...item}
-                                isFirst={index === 0}
-                                isLast={index === uiMenuItems.length - 1}
-                            />
-                        ))}
-                    </View>
-                </ScrollView>
-            </View>
-        </View>
+                {/* Ui Items */}
+                <View style={{ marginTop: 30 }}>
+                    {uiMenuItems.map((item, index) => (
+                        <MenuItem
+                            key={item.component}
+                            {...item}
+                            isFirst={index === 0}
+                            isLast={index === uiMenuItems.length - 1}
+                        />
+                    ))}
+                </View>
+            </ScrollView>
+        </CustomView>
     );
 };

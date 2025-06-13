@@ -1,12 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
-import { colors } from '../../../config/theme/theme';
 import Icon from '@react-native-vector-icons/ionicons';
 import { Separator } from './Separator';
+import { ThemeContext } from '../../context/ThemeContext';
 
 interface Props {
     name: string,
@@ -21,6 +21,7 @@ type iconType = React.ComponentProps<typeof Icon>['name']
 
 export const MenuItem: FC<Props> = ({ name, icon, component, isFirst = false, isLast = false }) => {
 
+    const { colors } = useContext(ThemeContext);
     const navigation = useNavigation<any>();
 
     return (

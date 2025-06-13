@@ -1,8 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { Text } from 'react-native-gesture-handler';
-import { colors, globalStyles } from '../../../config/theme/theme';
+import { globalStyles } from '../../../config/theme/theme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ThemeContext } from '../../context/ThemeContext';
 
 interface Props {
     text: string,
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export const Title: FC<Props> = ({ text, safe = false, white = false }) => {
+    const { colors } = useContext(ThemeContext);
     const { top } = useSafeAreaInsets();
 
     return (

@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { Pressable, StyleProp, ViewStyle } from 'react-native';
 import { Text } from 'react-native-gesture-handler';
-import { colors, globalStyles } from '../../../config/theme/theme';
+import { globalStyles } from '../../../config/theme/theme';
+import { ThemeContext } from '../../context/ThemeContext';
 
 interface Props {
     text: string;
@@ -11,6 +12,8 @@ interface Props {
 }
 
 export const Button: FC<Props> = ({ text, styles, onPress }) => {
+    const { colors } = useContext(ThemeContext);
+
     return (
 
         <Pressable

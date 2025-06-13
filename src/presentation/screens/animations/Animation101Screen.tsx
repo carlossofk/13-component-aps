@@ -1,9 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, { useContext } from 'react';
 import { Animated, Easing, Pressable, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-gesture-handler';
-import { colors } from '../../../config/theme/theme';
 import { useAnimation } from '../../hooks/useAnimation';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export const Animation101Screen = () => {
     const {
@@ -14,6 +14,7 @@ export const Animation101Screen = () => {
         fadeOut,
         startMovingTopPosition,
     } = useAnimation();
+    const { colors } = useContext(ThemeContext);
 
 
     return (
@@ -27,6 +28,7 @@ export const Animation101Screen = () => {
                         translateY: animatedTop,
                     }],
                 },
+                { backgroundColor: colors.primary },
             ]} />
 
             <Pressable
@@ -40,7 +42,7 @@ export const Animation101Screen = () => {
                 }}
                 style={{ marginTop: 10 }}
             >
-                <Text>
+                <Text style={{ color: colors.text }}>
                     FadeIn
                 </Text>
             </Pressable>
@@ -49,7 +51,7 @@ export const Animation101Screen = () => {
                 onPress={() => fadeOut({})}
                 style={{ marginTop: 10 }}
             >
-                <Text>
+                <Text style={{ color: colors.text }}>
                     FaseOut
                 </Text>
             </Pressable>
@@ -64,7 +66,6 @@ const style = StyleSheet.create({
         alignItems: 'center',
     },
     purpleBlox: {
-        backgroundColor: colors.primary,
         width: 150,
         height: 150,
     },

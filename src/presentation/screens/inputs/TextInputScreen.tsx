@@ -11,9 +11,11 @@ import { CustomView } from '../../components/ui/CustomView';
 import { Title } from '../../components/ui/Title';
 import { globalStyles } from '../../../config/theme/theme';
 import { Card } from '../../components/ui/Card';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export const TextInputScreen = () => {
+    const { isDark, colors } = useContext(ThemeContext);
     const [form, setForm] = useState({
         name: '',
         email: '',
@@ -29,7 +31,11 @@ export const TextInputScreen = () => {
 
                     <Card>
                         <TextInput
-                            style={globalStyles.input}
+                            style={[
+                                globalStyles.input,
+                                { color: colors.text },
+                                isDark && { borderColor: colors.text },
+                            ]}
                             placeholder="Nombre completo"
                             autoCapitalize={'words'}
                             autoCorrect={false}
@@ -37,7 +43,11 @@ export const TextInputScreen = () => {
                         />
 
                         <TextInput
-                            style={globalStyles.input}
+                            style={[
+                                globalStyles.input,
+                                { color: colors.text },
+                                isDark && { borderColor: colors.text },
+                            ]}
                             placeholder="Correo electrónico"
                             autoCapitalize={'none'}
                             autoCorrect={false}
@@ -46,7 +56,11 @@ export const TextInputScreen = () => {
                         />
 
                         <TextInput
-                            style={globalStyles.input}
+                            style={[
+                                globalStyles.input,
+                                { color: colors.text },
+                                isDark && { borderColor: colors.text },
+                            ]}
                             placeholder="Teléfono"
                             keyboardType="phone-pad"
                             onChangeText={value => setForm({ ...form, phone: value })}
@@ -56,24 +70,28 @@ export const TextInputScreen = () => {
                     <View style={{ height: 10 }} />
 
                     <Card>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
-                        <Text>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
+                        <Text style={{ color: colors.text }}>{JSON.stringify(form, null, 2)}</Text>
                     </Card>
 
                     <View style={{ height: 20 }} />
 
                     <Card>
                         <TextInput
-                            style={globalStyles.input}
+                            style={[
+                                globalStyles.input,
+                                { color: colors.text },
+                                isDark && { borderColor: colors.text },
+                            ]}
                             placeholder="Teléfono"
                             keyboardType="phone-pad"
                             onChangeText={value => setForm({ ...form, phone: value })}

@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import { Switch, Text } from 'react-native-gesture-handler';
-import { colors } from '../../../config/theme/theme';
+import { ThemeContext } from '../../context/ThemeContext';
 
 interface Props {
     isOn: boolean,
@@ -11,6 +11,8 @@ interface Props {
 }
 
 export const CustomSwitch: FC<Props> = ({ isOn, text, onChange }) => {
+    const { colors } = useContext(ThemeContext);
+
     return (
         <View style={styles.switchRow}>
             {text && (<Text style={{ color: colors.text }}>{text}</Text>)}
